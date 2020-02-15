@@ -1,0 +1,14 @@
+sys.stdout.write("%s:$krb5pa$%s$%s$%s$%s$%s%s\n" % (user,
+                                                                    etype, user, realm, salt,
+                                                                    enc_timestamp,
+                                                                    checksum))
+																	
+																	if etype != "23":
+                        sys.stderr.write("Currently unsupported etype %s found!\n" % etype)
+                    else:
+                        sys.stdout.write("%s:$krb5tgs$%s$%s$%s\n" % (spn, etype, data[:32], data[32:]))
+						
+						                    if etype != "23":
+                        sys.stdout.write("$krb5asrep$%s$%s$%s$%s\n" % (etype, salt, data[0:-24], data[-24:]))
+                    else:
+                        sys.stdout.write("$krb5asrep$%s$%s$%s\n" % (etype, data[0:32], data[32:]))
